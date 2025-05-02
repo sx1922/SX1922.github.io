@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- Favicon 图标 -->
+    <link rel="icon" href="标.ico" type="image/x-icon">
+    <style>
+        :root {
+            /* 日间模式变量 */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --nav-bg: #633838;
+            --nav-text: #ffffff;
+            --nav-hover: rgba(255,255,255,0.2);
+            --section-bg: #f8f8f8;
+            
+            /* 夜间模式变量 */
+            --dark-bg-color: #1a1a1a;
+            --dark-text-color: #e0e0e0;
+            --dark-nav-bg: #2d0f0f;
+            --dark-nav-hover: rgba(255,255,255,0.1);
+            --dark-section-bg: #2d2d2d;
+        }
+
+        /* 导航栏样式 */
+        .main-nav {
+            background: var(--nav-bg);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--nav-text);
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--nav-text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-links a:hover {
+            background: var(--nav-hover);
+        }
+
+        /* 夜间模式切换按钮 */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--nav-text);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--nav-hover);
+        }
+
+        /* 全局样式 */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        section {
+            background-color: var(--section-bg);
+            margin: 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* 夜间模式 */
+        body.dark-mode {
+            --bg-color: var(--dark-bg-color);
+            --text-color: var(--dark-text-color);
+            --nav-bg: var(--dark-nav-bg);
+            --nav-hover: var(--dark-nav-hover);
+            --section-bg: var(--dark-section-bg);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .main-nav {
+                padding: 1rem;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<!-- 导航栏 -->
+<nav class="main-nav">
+    <div class="nav-links">
+        <button class="theme-toggle" id="themeToggle">
+            🌞
+        </button>
+    </div>
+</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器守则</title>
+    
+    <!-- Favicon 图标 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #633838;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        .content {
+            margin: 30px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>服务器守则</h1>
+</header>
+
+<section>
+    <div class="content">
+        <h2>目录</h2>
+        <ul>
+            <li>1. 服务器介绍</li>
+            <li>2. 管理人员名单</li>
+            <li>3. 基本守则</li>
+            <li>4. 违反守则的条例的后果</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>1. 服务器介绍</h2>
+        <p>本服务器为有规则服务器，服主为苏熊，对服务器有任何问题请告诉服主，服主会为你解答。</p>
+        <p>获取服务器IP与密码请加入主群，在加入主群前请加入审核群获取主群二维码。</p>
+        <p>服务器中的玩家可以自由组织团体。</p>
+        <p>服务器采用一人一号，账号登记的制度，若账号未登记将被拉入黑名单。</p>
+    </div>
+
+    <div class="content">
+        <h2>2. 管理人员名单</h2>
+        <ul>
+            <li>服主：苏熊</li>
+            <li>管理人员：与DSMIA的其他成员</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>3. 基本守则</h2>
+        <ul>
+            <li>任何玩家不得恶意毁坏他人的房屋及装备。</li>
+            <li>任何玩家不得恶意伤害其他玩家。</li>
+            <li>服务器任何组织应当在服务器管理人员提出协助时予以配合。</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>4. 违反守则的条例的后果</h2>
+        <ul>
+            <li>违反第一条守则的，情节轻微的账号不允许进入服务器3天，情节中等的5天，情节严重的7天。</li>
+            <li>违反第二条的，账号不允许进入服务器6天。</li>
+            <li>违反第三条的，第一次组织领导人将被予以警告，第二次组织领导人账号不允许进入服务器2天，第三次组织领导人不允许进入服务器4天，第三次以上的次数在第三次的基础上多一次加两天。</li>
+        </ul>
+    </div>
+
+    <!-- 下载按钮 -->
+    <div class="content">
+        <a href="https://github.com/sx1922/sx/blob/b6ecde88d93f7ffd10f1d79d00481baf5aedb507/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%88%E5%88%99%E5%88%9D%E7%89%88.docx" download>点击下载服务器守则，或加入群聊下载</a>
+    </div>
+</section>
+<script>
+    // 夜间模式切换
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // 读取本地存储
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        updateButtonIcon();
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : '');
+        updateButtonIcon();
+    });
+
+    function updateButtonIcon() {
+        themeToggle.textContent = body.classList.contains('dark-mode') ? '🌜' : '🌞';
+    }
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+</script>
+
+<!-- 返回主页链接 -->
+<section>
+    <a href="index.html" class="btn-secondary">返回主页</a>
+</section>
+
+<footer>
+    <p>&copy; <span id="year"></span> 苏熊生存战争服务器</p>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
