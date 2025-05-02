@@ -6,7 +6,7 @@
     <title>苏熊生存战争服务器网站</title>
     
     <!-- Favicon 图标 -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="标.ico" type="image/x-icon">
     
     <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -227,7 +227,145 @@
 <header>
     <h1>欢迎来到苏熊生存战争服务器网站</h1>
 </header>
+<!-- 样式部分 -->
+<style>
+    :root {
+        /* 日间模式变量 */
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --nav-bg: #633838;
+        --nav-text: #ffffff;
+        --nav-hover: rgba(255,255,255,0.2);
+        --section-bg: #f8f8f8;
+        
+        /* 夜间模式变量 */
+        --dark-bg-color: #1a1a1a;
+        --dark-text-color: #e0e0e0;
+        --dark-nav-bg: #2d0f0f;
+        --dark-nav-hover: rgba(255,255,255,0.1);
+        --dark-section-bg: #2d2d2d;
+    }
 
+    /* 导航栏样式 */
+    .main-nav {
+        background: var(--nav-bg);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--nav-text);
+        text-decoration: none;
+        padding: 0.8rem 1.2rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        position: relative;
+        font-weight: 500;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--nav-text);
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+    .nav-links a:hover {
+        background: var(--nav-hover);
+    }
+
+    /* 夜间模式切换按钮 */
+    .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--nav-text);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        background: var(--nav-hover);
+    }
+
+    /* 全局样式 */
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    section {
+        background-color: var(--section-bg);
+        margin: 2rem;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* 夜间模式 */
+    body.dark-mode {
+        --bg-color: var(--dark-bg-color);
+        --text-color: var(--dark-text-color);
+        --nav-bg: var(--dark-nav-bg);
+        --nav-hover: var(--dark-nav-hover);
+        --section-bg: var(--dark-section-bg);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .nav-links {
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .main-nav {
+            padding: 1rem;
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="main-nav">
+    <div class="nav-links">
+        <a href="index.html">🏠 首页</a>
+        <a href="2sx.html">⚖️ 服务器守则</a>
+        <a href="#events">📢 活动公告</a>
+        <button class="theme-toggle" id="themeToggle">
+            🌞
+        </button>
+    </div>
+</nav>
 <!-- 动态时钟 -->
 <div id="server-time"></div>
     <h2>关于服务器</h2>
@@ -264,9 +402,9 @@
     <h2>公告</h2>
     <div id="events">
         <div class="event">
-            <h3>生存大赛</h3>
-            <p>时间：2025年2月15日 20:00</p>
-            <p>描述：参与生存大赛，赢取丰厚奖品！</p>
+            <h3>萨瓦斯托波尔公社</h3>
+            <p>服务器的第一个组织</p>
+            <p><a href="gs.html" target="_blank">点击查看详情</a></p>
             <p class="countdown"></p>
         </div>
         <div class="event">
@@ -290,12 +428,6 @@
         </a>
     </div>
 </section>
-
-<!-- 服务器守则链接 -->
-<section>
-    <a href="2sx.html" class="btn btn-secondary">查看服务器守则</a>
-</section>
-
 <!-- 返回顶部按钮 -->
 <button class="back-to-top">返回顶部</button>
 
@@ -362,6 +494,39 @@
         updateCountdown();
     });
 </script>
+<script>
+    // 夜间模式切换
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
 
+    // 读取本地存储
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        updateButtonIcon();
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : '');
+        updateButtonIcon();
+    });
+
+    function updateButtonIcon() {
+        themeToggle.textContent = body.classList.contains('dark-mode') ? '🌜' : '🌞';
+    }
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+</script>
 </body>
 </html>
